@@ -34,3 +34,10 @@ export const newPasswordSchema = z.object({
 })
 
 export type NewPasswordSchema = z.infer<typeof newPasswordSchema>;
+
+export const noteSchema = z.object({
+    title: z.string().min(1, "Title is required"),
+    content: z.string().min(1, "Content is required"),
+})
+
+export type NoteSchema = z.infer<typeof noteSchema>;

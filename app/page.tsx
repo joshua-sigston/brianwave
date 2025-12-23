@@ -1,5 +1,7 @@
 import { LinkContainer } from "./components/link-container";
 
+export const dynamic = "force-dynamic"
+
 
 const links = [
   {
