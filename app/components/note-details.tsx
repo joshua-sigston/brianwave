@@ -1,7 +1,7 @@
 "use client"
-import { PenBoxIcon, TrashIcon } from "lucide-react"
+import { BotIcon, PenBoxIcon, TrashIcon } from "lucide-react"
 import { Button } from "./ui/button"
-import { deleteNote, updateNote } from "../(notes)/actions"
+import { deleteNote, generateSummary, updateNote } from "../(notes)/actions"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -16,6 +16,7 @@ interface Note {
     id: string
     title: string
     content: string
+    summary: string | null
 }
 
 export default function NoteDetails({note: initialNote}: {note: Note}) {
@@ -99,7 +100,15 @@ export default function NoteDetails({note: initialNote}: {note: Note}) {
                 <>
                     <h1 className="text-2xl font-bold mb-4">{note.title}</h1>
                     <p className="whitespace-pre-wrap mb-4">{note.content}</p>
+                    <h3 className="text-lg font-bold mb-2">AI Summary</h3>
+                    <p className="whitespace-pre-wrap mb-4">{note.summary}</p>
                     <div className="flex justify-end items-center gap-2">
+                    <form action={generateSummary}>
+                        <input type="hidden" name="id" value={note.id} />
+                        <Button type="submit" variant="outline">
+                            <BotIcon size={16} color="blue" />
+                        </Button>
+                    </form>
                         <Button type="button" variant="outline" onClick={() => setIsEditing(true)}>
                             <PenBoxIcon size={16} color="blue" />
                         </Button>
