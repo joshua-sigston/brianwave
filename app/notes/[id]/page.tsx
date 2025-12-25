@@ -1,6 +1,7 @@
-import { deleteNote } from "@/app/(notes)/actions"
+import { deleteNote, generateSummary } from "@/app/(notes)/actions"
 import { LogoutButton } from "@/app/components/forms/logout-button"
 import NoteDetails from "@/app/components/note-details"
+import NoteSummary from "@/app/components/note-summary"
 import { Button } from "@/app/components/ui/button"
 import { createClient } from "@/utils/supabase/server"
 import { ArrowLeftIcon } from "lucide-react"
